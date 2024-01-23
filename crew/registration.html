@@ -55,6 +55,9 @@
             <label for="crew-name">Crew Name:</label>
             <input type="text" id="crew-name" name="crew-name" required>
             <br>
+			<label for="link-serv">Server Link:</label>
+            <input type="text" id="link-serv" name="link-serv" required>
+            <br>
             <button type="button" id="submit-btn" onclick="submitForm()">Submit</button>
         </form>
     </div>
@@ -63,8 +66,9 @@
         function submitForm() {
             var discordUsername = document.getElementById("discord-username").value;
             var crewName = document.getElementById("crew-name").value;
+			var servLink = document.getElementById("link-serv").value;
             var data = {
-                content: `New Crew Registration\nDiscord Username: ${discordUsername}\nCrew Name: ${crewName}`
+                content: `New Crew Registration\nDiscord Username: ${discordUsername}\nCrew Name: ${crewName}\nServer Link: ${servLink}`
             };
             var webhookUrl = 'https://discord.com/api/webhooks/1199443206543257770/R4mmZB6dmketZIdBnHgByhRqGHanOJNw4-Agy4-Z4fRECzeLhypnj6kAWuyMpCmiRuAs';
             fetch(webhookUrl, {
