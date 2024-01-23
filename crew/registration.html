@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storm Fruits Crew Registration</title>
+    <style>
+        body {
+            background-color: black;
+            color: cyan;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #registration-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: cyan;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid cyan;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        #submit-btn {
+            background-color: cyan;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="registration-form">
+        <h1>Storm Fruits Crew Registration</h1>
+        <form id="crew-form">
+            <label for="discord-username">Discord Username:</label>
+            <input type="text" id="discord-username" name="discord-username" required>
+            <br>
+            <label for="crew-name">Crew Name:</label>
+            <input type="text" id="crew-name" name="crew-name" required>
+            <br>
+            <button type="button" id="submit-btn" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            var discordUsername = document.getElementById("discord-username").value;
+            var crewName = document.getElementById("crew-name").value;
+            var data = {
+                content: `New Crew Registration\nDiscord Username: ${discordUsername}\nCrew Name: ${crewName}`
+            };
+            var webhookUrl = 'https://discord.com/api/webhooks/1199443206543257770/R4mmZB6dmketZIdBnHgByhRqGHanOJNw4-Agy4-Z4fRECzeLhypnj6kAWuyMpCmiRuAs';
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                alert('Registration submitted successfully!');
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+    </script>
+</body>
+</html>
